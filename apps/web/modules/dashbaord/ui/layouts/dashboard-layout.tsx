@@ -1,6 +1,6 @@
 import AuthGuard from '@/modules/components/auth-gaurd'
 import OrganizationGuard from '@/modules/components/organization-gurd'
-import { SidebarProvider, SidebarTrigger } from '@workspace/ui/components/sidebar'
+import { SidebarProvider } from '@workspace/ui/components/sidebar'
 import { cookies } from 'next/headers'
 import React from 'react'
 import { DashboardSidebar } from '../components/dashboard-sidebar'
@@ -16,10 +16,7 @@ const DashboardLayout = async({children}:{children: React.ReactNode}) => {
             <SidebarProvider defaultOpen={defaultOpen}>
                 <DashboardSidebar />
                 <main className="flex flex-1 flex-col">
-                    <div className="h-12 flex items-center gap-2 px-3 border-b">
-                    <SidebarTrigger />
-                    <span className="text-sm">Menu</span>
-                    </div>
+                   
                     {children}
                 </main>
             </SidebarProvider>
