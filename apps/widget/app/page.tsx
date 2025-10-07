@@ -5,14 +5,14 @@ import { use } from "react";
 
 interface Props{
   searchParams: Promise<{
-    orgId: string
+    organizationId: string
   }>
 }
 export default  function Page({searchParams}:Props) {
 
-  const { orgId } =  use(searchParams);
+  const { organizationId } =  use(searchParams);
 
   return (
-   <WidgetView orgId={orgId} />
+   <WidgetView organizationId={organizationId} />
   )
 }
