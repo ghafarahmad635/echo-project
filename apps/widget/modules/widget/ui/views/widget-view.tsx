@@ -3,15 +3,17 @@ import React from 'react'
 import WidgetAuthScreen from '../screens/widget-auth-screen'
 import { useAtom } from 'jotai'
 import { screenAtom } from '../../atoms/widget-atoms'
+import { WidgetErrorScreen } from '../screens/widget-error-screen'
+import WidgetLoadingScreen from '../screens/widget-loading-screen'
 interface Props{
-    orgId: string
+    organizationId: string
 }
-const WidgetView = ({orgId}:Props) => {
+const WidgetView = ({organizationId}:Props) => {
   const screen = useAtom(screenAtom)[0]
   const screenComponents={
     auth:<WidgetAuthScreen/>,
-    loading:<p>Todo loading</p>,
-    error:<p>Todo error</p>,
+    loading:<WidgetLoadingScreen organizationId={organizationId} />,
+    error:<WidgetErrorScreen/>,
     voice:<p>Todo voice</p>,
     inbox:<p>Todo inbox</p>,
     selection:<p>Todo selection</p>,
