@@ -5,6 +5,8 @@ import { useAtom } from 'jotai'
 import { screenAtom } from '../../atoms/widget-atoms'
 import { WidgetErrorScreen } from '../screens/widget-error-screen'
 import WidgetLoadingScreen from '../screens/widget-loading-screen'
+import { WidgetSelectionScreen } from '../screens/widget-selection-screen'
+import { WidgetChatScreen } from '../screens/widget-chat-screen'
 interface Props{
     organizationId: string
 }
@@ -16,8 +18,8 @@ const WidgetView = ({organizationId}:Props) => {
     error:<WidgetErrorScreen/>,
     voice:<p>Todo voice</p>,
     inbox:<p>Todo inbox</p>,
-    selection:<p>Todo selection</p>,
-    chat:<p>Todo chat</p>,
+    selection:<WidgetSelectionScreen />,
+    chat:<WidgetChatScreen />,
     contact:<p>Todo contact</p>,
   }
   return (
