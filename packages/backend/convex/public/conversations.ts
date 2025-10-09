@@ -2,6 +2,10 @@ import { paginationOptsValidator } from "convex/server";
 import { mutation, query } from "../_generated/server";
 import { ConvexError, v } from "convex/values";
 
+import { supportAgent } from "../system/ai/agents/suportAgent";
+import { createThread, saveMessage } from "@convex-dev/agent";
+import { components } from "../_generated/api";
+
 export const getMany = query({
      args: {
     contactSessionId: v.id("contactSessions"),
@@ -41,7 +45,17 @@ export const create = mutation({
         message: "Invalid session",
       });
     }
-    const threadId = crypto.randomUUID();
+    const { threadId } = await supportAgent.createThread(ctx,
+      {
+    userId:args.organizationId,
+  });
+  const { messageId } = await saveMessage(ctx, components.agent, {
+  threadId,
+  userId:args.organizationId,
+  message: { role: "assistant", content: "How I can help you?" },
+});
+  
+
     const conversationId = await ctx.db.insert("conversations", {
       contactSessionId: session._id,
       status: "unresolved",
