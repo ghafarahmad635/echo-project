@@ -18,8 +18,6 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "@ai-sdk/deepseek": "^1.0.20",
-    "@ai-sdk/openai": "2.0.42",
     "@clerk/backend": "^2.17.2",
     "@convex-dev/agent": "^0.2.10",
     "ai": "^5.0.60",
