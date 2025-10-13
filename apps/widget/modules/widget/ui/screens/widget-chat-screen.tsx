@@ -126,10 +126,11 @@ export const WidgetChatScreen = () => {
           />
             {toUIMessages(messages.results ?? [])?.map((message) => {
             return (
-              <>
+             
               <AIMessage
                 from={message.role === "user" ? "user" : "assistant"}
                 key={message.id}
+                id={message.id}
               >
                 <AIMessageContent>
                   <AIResponse>{message.text}</AIResponse>
@@ -151,8 +152,7 @@ export const WidgetChatScreen = () => {
                 
               </AIMessage>
               
-                </>
-            )
+              )
           })}
         </AIConversationContent>
        </AIConversation>

@@ -3,7 +3,7 @@ import { mutation, query } from "../_generated/server";
 import { ConvexError, v } from "convex/values";
 
 import { supportAgent } from "../system/ai/agents/suportAgent";
-import { createThread, saveMessage } from "@convex-dev/agent";
+import { createThread, MessageDoc, saveMessage } from "@convex-dev/agent";
 import { components } from "../_generated/api";
 
 export const getMany = query({
@@ -28,6 +28,31 @@ export const getMany = query({
       )
       .order("desc")
       .paginate(args.paginationOpts);
+      const conversationsWithLastMessage = await Promise.all(
+         conversations.page.map(async (conversation) => {
+           let lastMessage: MessageDoc | null = null;
+            const messages = await supportAgent.listMessages(ctx, {
+            threadId: conversation.threadId,
+            paginationOpts: { numItems: 1, cursor: null },
+          });
+           if (messages.page.length > 0) {
+            lastMessage = messages.page[0] ?? null;
+          }
+          return{
+             _id: conversation._id,
+          _creationTime: conversation._creationTime,
+          status: conversation.status,
+          organizationId: conversation.organizationId,
+          threadId: conversation.threadId,
+          lastMessage,
+          }
+         })
+         
+      )
+       return {
+      ...conversations,
+      page: conversationsWithLastMessage,
+    };
 
    },
 });
@@ -99,3 +124,5 @@ export const getOne = query({
     };
   }
 })
+
+
