@@ -7,6 +7,7 @@ import { WidgetErrorScreen } from '../screens/widget-error-screen'
 import WidgetLoadingScreen from '../screens/widget-loading-screen'
 import { WidgetSelectionScreen } from '../screens/widget-selection-screen'
 import { WidgetChatScreen } from '../screens/widget-chat-screen'
+import WidgetInboxScreen from '../screens/widget-inbox-screen'
 interface Props{
     organizationId: string
 }
@@ -17,7 +18,7 @@ const WidgetView = ({organizationId}:Props) => {
     loading:<WidgetLoadingScreen organizationId={organizationId} />,
     error:<WidgetErrorScreen/>,
     voice:<p>Todo voice</p>,
-    inbox:<p>Todo inbox</p>,
+    inbox:<WidgetInboxScreen/>,
     selection:<WidgetSelectionScreen />,
     chat:<WidgetChatScreen />,
     contact:<p>Todo contact</p>,
