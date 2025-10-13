@@ -4,7 +4,7 @@
 import { Button } from "@workspace/ui/components/button";
 
 import {  Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@workspace/ui/components/tooltip";
-import { cn } from "@workspace/ui/lib/utils.js";
+import { cn } from "@workspace/ui/lib/utils";
 import type { ComponentProps } from "react";
 
 export type ActionsProps = ComponentProps<"div">;
