@@ -27,13 +27,14 @@ const WidgetInboxScreen = () => {
         }
       : "skip",
     {
-      initialNumItems: 10,
+      initialNumItems: 2,
     },
   );
    const { topElementRef, handleLoadMore, canLoadMore, isLoadingMore } = useInfiniteScroll({
     status: conversations.status,
     loadMore: conversations.loadMore,
-    loadSize: 10,
+    loadSize: 2,
+    observerEnabled:false
   });
 
   return (
