@@ -14,7 +14,7 @@ const OrganizationGuard = (
             </AuthLayout>
         }
   return (
-    <div>
+    <div className="max-w-full w-full">
       {children}
     </div>
   )
