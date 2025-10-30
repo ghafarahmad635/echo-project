@@ -73,12 +73,12 @@ export const create = mutation({
     const { threadId } = await supportAgent.createThread(ctx,
       {
     userId:args.organizationId,
+    });
+    const { messageId } = await saveMessage(ctx, components.agent, {
+    threadId,
+    userId:args.organizationId,
+    message: { role: "assistant", content: "How I can help you?" },
   });
-  const { messageId } = await saveMessage(ctx, components.agent, {
-  threadId,
-  userId:args.organizationId,
-  message: { role: "assistant", content: "How I can help you?" },
-});
   
 
     const conversationId = await ctx.db.insert("conversations", {
